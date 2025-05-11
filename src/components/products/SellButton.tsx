@@ -33,15 +33,15 @@ const SellButton = ({
 
   return (
     <Button
-      as={Link}
-      to="/create-listing"
-      onClick={handleClick}
       className={className}
       size="sm"
+      onClick={handleClick}
       {...props}
     >
-      {showIcon && <Package className="h-4 w-4" />}
-      {showText && <span>{text}</span>}
+      <Link to="/create-listing">
+        {showIcon && <Package className="h-4 w-4" />}
+        {showText && <span>{text}</span>}
+      </Link>
     </Button>
   );
 };
