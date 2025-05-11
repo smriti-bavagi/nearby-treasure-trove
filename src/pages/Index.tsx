@@ -1,13 +1,61 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React, { useState } from 'react';
+import Layout from '@/components/layout/Layout';
+import ProductGrid from '@/components/products/ProductGrid';
+import FilterBar from '@/components/filters/FilterBar';
+import MapView from '@/components/map/MapView';
+import { useProducts } from '@/contexts/ProductContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const Index: React.FC = () => {
+  const { filteredProducts, isMapView, setIsMapView, setFilterOptions } = useProducts();
+  const { user } = useAuth();
+  
+  const toggleMapView = () => {
+    setIsMapView(!isMapView);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <Layout hideFooter={isMapView}>
+      <FilterBar onToggleMapView={toggleMapView} />
+      
+      <div className="container px-4 pb-8">
+        {!user?.location && (
+          <div className="bg-muted/50 rounded-md p-4 flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 mt-6">
+            <div className="flex items-start gap-3">
+              <MapPin className="h-5 w-5 mt-0.5 text-muted-foreground" />
+              <div>
+                <h3 className="font-medium">Set your location</h3>
+                <p className="text-sm text-muted-foreground">
+                  Add your location to see items near you and enable distance filtering
+                </p>
+              </div>
+            </div>
+            <Link to="/profile">
+              <Button size="sm">Update Location</Button>
+            </Link>
+          </div>
+        )}
+        
+        {isMapView ? (
+          <div className="h-[calc(100vh-13rem)] mt-4">
+            <MapView />
+          </div>
+        ) : (
+          <>
+            <h1 className="text-2xl font-bold mt-6 mb-4">
+              {filteredProducts.length === 0
+                ? "No items found"
+                : "Items for Sale"}
+            </h1>
+            <ProductGrid products={filteredProducts} />
+          </>
+        )}
       </div>
-    </div>
+    </Layout>
   );
 };
 
