@@ -12,7 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { MapPin, IndianRupee } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import SellButton from '@/components/products/SellButton';
 
 const Header: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -53,12 +54,7 @@ const Header: React.FC = () => {
           
           {isAuthenticated ? (
             <div className="flex items-center gap-4">
-              <Link to="/create-listing">
-                <Button size="sm" className="flex items-center gap-1">
-                  <IndianRupee className="h-4 w-4" />
-                  Sell Now
-                </Button>
-              </Link>
+              <SellButton />
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -84,13 +80,16 @@ const Header: React.FC = () => {
               </DropdownMenu>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
-              <Link to="/login">
-                <Button variant="outline" size="sm">Log In</Button>
-              </Link>
-              <Link to="/signup">
-                <Button size="sm">Sign Up</Button>
-              </Link>
+            <div className="flex items-center gap-4">
+              <SellButton />
+              <div className="flex items-center gap-2">
+                <Link to="/login">
+                  <Button variant="outline" size="sm">Log In</Button>
+                </Link>
+                <Link to="/signup">
+                  <Button size="sm">Sign Up</Button>
+                </Link>
+              </div>
             </div>
           )}
         </div>

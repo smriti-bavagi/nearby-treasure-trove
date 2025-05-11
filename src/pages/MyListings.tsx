@@ -3,10 +3,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/layout/Layout';
-import { Button } from '@/components/ui/button';
 import { mockProducts } from '@/data/mockData';
 import { Product } from '@/types';
 import ProductCard from '@/components/products/ProductCard';
+import SellButton from '@/components/products/SellButton';
 
 const MyListings: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
@@ -25,18 +25,12 @@ const MyListings: React.FC = () => {
     return mockProducts.filter(product => product.sellerId === user.id);
   }, [user]);
 
-  const handleAddListing = () => {
-    navigate('/create-listing');
-  };
-
   return (
     <Layout>
       <div className="container py-8 px-4">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold">My Listings</h1>
-          <Button onClick={handleAddListing}>
-            Create New Listing
-          </Button>
+          <SellButton text="Create New Listing" />
         </div>
         
         {userListings.length > 0 ? (
@@ -51,9 +45,7 @@ const MyListings: React.FC = () => {
             <p className="text-muted-foreground mb-6">
               Sell your items to people in your local area
             </p>
-            <Button onClick={handleAddListing}>
-              Create Your First Listing
-            </Button>
+            <SellButton text="Create Your First Listing" />
           </div>
         )}
       </div>

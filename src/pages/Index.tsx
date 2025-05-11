@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import ProductGrid from '@/components/products/ProductGrid';
 import FilterBar from '@/components/filters/FilterBar';
@@ -7,8 +7,9 @@ import MapView from '@/components/map/MapView';
 import { useProducts } from '@/contexts/ProductContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { MapPin } from 'lucide-react';
+import { MapPin, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SellButton from '@/components/products/SellButton';
 
 const Index: React.FC = () => {
   const { filteredProducts, isMapView, setIsMapView, setFilterOptions } = useProducts();
@@ -54,6 +55,13 @@ const Index: React.FC = () => {
             <ProductGrid products={filteredProducts} />
           </>
         )}
+      </div>
+      
+      {/* Floating sell button (visible on mobile) */}
+      <div className="md:hidden fixed bottom-6 right-6 z-30">
+        <SellButton className="rounded-full h-14 w-14 shadow-lg flex items-center justify-center" size="icon">
+          <Package className="h-6 w-6" />
+        </SellButton>
       </div>
     </Layout>
   );
