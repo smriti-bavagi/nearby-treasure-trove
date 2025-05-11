@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
-import { MapPin } from 'lucide-react';
+import { MapPin, IndianRupee } from 'lucide-react';
 import { mockProducts } from '@/data/mockData';
 import { Product } from '@/types';
 
@@ -116,8 +116,9 @@ const ProductDetails: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-3xl font-bold">{product.title}</h1>
-                <p className="text-2xl font-bold text-primary mt-2">
-                  ${product.price.toFixed(2)}
+                <p className="text-2xl font-bold text-primary mt-2 flex items-center">
+                  {product.currency === "INR" ? <IndianRupee className="h-5 w-5 mr-1" /> : "$"}
+                  {product.price.toFixed(2)}
                 </p>
                 <div className="flex items-center text-sm text-muted-foreground mt-2">
                   <MapPin className="h-4 w-4 mr-1" />

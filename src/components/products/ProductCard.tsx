@@ -3,14 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '@/types';
 import { Card, CardContent } from '@/components/ui/card';
-import { MapPin } from 'lucide-react';
+import { MapPin, IndianRupee } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id, title, price, images, location, distance, category } = product;
+  const { id, title, price, images, location, distance, category, currency } = product;
   
   return (
     <Link to={`/product/${id}`}>
@@ -28,7 +28,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <CardContent className="p-3">
           <h3 className="font-medium text-base truncate">{title}</h3>
           <div className="flex items-center justify-between mt-1">
-            <p className="font-bold text-lg">${price.toFixed(2)}</p>
+            <p className="font-bold text-lg flex items-center">
+              {currency === "INR" ? <IndianRupee className="h-4 w-4 mr-1" /> : "$"}
+              {price.toFixed(2)}
+            </p>
             <div className="text-xs text-muted-foreground flex items-center">
               <MapPin className="h-3 w-3 mr-0.5" />
               {distance !== undefined ? `${distance.toFixed(1)} km` : location.address.split(',')[0]}

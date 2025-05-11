@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Product, Category, FilterOptions } from '../types';
+import { Product, Category, FilterOptions, Currency } from '../types';
 import { mockProducts } from '../data/mockData';
 import { useAuth } from './AuthContext';
 

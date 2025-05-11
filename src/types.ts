@@ -23,11 +23,14 @@ export type Category =
   | "Vehicles"
   | "Other";
 
+export type Currency = "INR" | "USD";
+
 export type Product = {
   id: string;
   title: string;
   description: string;
   price: number;
+  currency: Currency;
   category: Category;
   images: string[];
   createdAt: string;

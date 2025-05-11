@@ -23,10 +23,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Category } from '@/types';
+import { Category, Currency } from '@/types';
 import { categories } from '@/data/mockData';
 import { toast } from 'sonner';
-import { MapPin } from 'lucide-react';
+import { MapPin, IndianRupee } from 'lucide-react';
 
 const DEFAULT_IMAGE_URLS = [
   "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
@@ -46,6 +46,7 @@ const CreateListing: React.FC = () => {
     description: '',
     price: '',
     category: 'Electronics' as Category,
+    currency: 'INR' as Currency,
     imageUrls: [''],
   });
 
@@ -64,6 +65,10 @@ const CreateListing: React.FC = () => {
 
   const handleCategoryChange = (value: Category) => {
     setFormState(prev => ({ ...prev, category: value }));
+  };
+
+  const handleCurrencyChange = (value: Currency) => {
+    setFormState(prev => ({ ...prev, currency: value }));
   };
 
   const handleImageUrlChange = (index: number, value: string) => {
@@ -100,6 +105,7 @@ const CreateListing: React.FC = () => {
         title: formState.title,
         description: formState.description,
         price: parseFloat(formState.price),
+        currency: formState.currency,
         category: formState.category,
         images: imageUrls.length ? imageUrls : [randomDefaultImage],
         location: user.location
@@ -152,20 +158,42 @@ const CreateListing: React.FC = () => {
                   />
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="price">Price ($)</Label>
-                    <Input
-                      id="price"
-                      name="price"
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={formState.price}
-                      onChange={handleInputChange}
-                      placeholder="0.00"
-                      required
-                    />
+                    <Label htmlFor="price">Price</Label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                        <IndianRupee className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                      <Input
+                        id="price"
+                        name="price"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={formState.price}
+                        onChange={handleInputChange}
+                        placeholder="0.00"
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="currency">Currency</Label>
+                    <Select 
+                      value={formState.currency} 
+                      onValueChange={handleCurrencyChange as (value: string) => void}
+                    >
+                      <SelectTrigger id="currency">
+                        <SelectValue placeholder="Select currency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="INR">Indian Rupee (₹)</SelectItem>
+                        <SelectItem value="USD">US Dollar ($)</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   
                   <div className="space-y-2">
@@ -240,7 +268,7 @@ const CreateListing: React.FC = () => {
               </div>
               
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Creating...' : 'Create Listing'}
+                {isLoading ? 'Creating...' : 'Sell Now'}
               </Button>
             </form>
           </CardContent>
