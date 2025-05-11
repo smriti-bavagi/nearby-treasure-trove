@@ -43,6 +43,7 @@ export const mockProducts: Product[] = [
     title: "MacBook Pro 2021",
     description: "Slightly used MacBook Pro with M1 chip, 16GB RAM, 512GB SSD. In excellent condition with original packaging.",
     price: 1299,
+    currency: "INR",
     category: "Electronics",
     images: [
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjYm9vayUyMHByb3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
@@ -62,6 +63,7 @@ export const mockProducts: Product[] = [
     title: "Vintage Leather Sofa",
     description: "Beautiful vintage brown leather sofa. Some wear but in good condition. Very comfortable and adds character to any room.",
     price: 450,
+    currency: "INR",
     category: "Furniture",
     images: [
       "https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGVhdGhlciUyMHNvZmF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
@@ -81,6 +83,7 @@ export const mockProducts: Product[] = [
     title: "Mountain Bike - Trek",
     description: "Trek mountain bike in great condition. Recently serviced with new brakes and gears tuned up. Perfect for trails or city commuting.",
     price: 350,
+    currency: "INR",
     category: "Sports",
     images: [
       "https://images.unsplash.com/photo-1575585269294-7d28dd912db8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW91bnRhaW4lMjBiaWtlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
@@ -100,6 +103,7 @@ export const mockProducts: Product[] = [
     title: "Sony PS5 with Extra Controller",
     description: "Like-new PlayStation 5 with an extra controller. Includes original packaging and cables. Only selling because I don't have time to use it.",
     price: 425,
+    currency: "INR",
     category: "Electronics",
     images: [
       "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxheXN0YXRpb24lMjA1fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
@@ -118,6 +122,7 @@ export const mockProducts: Product[] = [
     title: "Vintage Vinyl Records Collection",
     description: "Collection of 25 classic rock vinyl records from the 70s and 80s. All in excellent playing condition with minimal wear.",
     price: 175,
+    currency: "INR",
     category: "Other",
     images: [
       "https://images.unsplash.com/photo-1603048588665-791ca91d0e95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmludGFnZSUyMHZpbnlsfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
@@ -137,6 +142,7 @@ export const mockProducts: Product[] = [
     title: "DSLR Camera - Canon EOS 80D",
     description: "Canon EOS 80D DSLR camera with 18-135mm lens. Includes camera bag, extra battery, and 64GB SD card. Great condition.",
     price: 675,
+    currency: "INR",
     category: "Electronics",
     images: [
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Fub24lMjBjYW1lcmF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
