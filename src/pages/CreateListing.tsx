@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -26,7 +25,7 @@ import {
 import { Category, Currency } from '@/types';
 import { categories } from '@/data/mockData';
 import { toast } from 'sonner';
-import { MapPin, IndianRupee } from 'lucide-react';
+import { MapPin, IndianRupee, ArrowLeft } from 'lucide-react';
 
 const DEFAULT_IMAGE_URLS = [
   "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
@@ -120,9 +119,24 @@ const CreateListing: React.FC = () => {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Layout>
       <div className="container py-8 px-4">
+        <div className="mb-4">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="flex items-center gap-1" 
+            onClick={goBack}
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back</span>
+          </Button>
+        </div>
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle>Create New Listing</CardTitle>
