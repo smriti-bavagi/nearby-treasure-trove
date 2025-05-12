@@ -3,11 +3,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Product } from '@/types';
 import { useProducts } from '@/contexts/ProductContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 // This is a placeholder component for the map view
 // In a real application, this would be integrated with a maps library like Google Maps or Mapbox
 const MapView: React.FC = () => {
-  const { filteredProducts, setActiveProduct } = useProducts();
+  const { filteredProducts, setActiveProduct, setIsMapView } = useProducts();
   const { user } = useAuth();
   const mapRef = useRef<HTMLDivElement>(null);
   const [isPseudoRendered, setIsPseudoRendered] = useState(false);
@@ -21,8 +23,25 @@ const MapView: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleBack = () => {
+    setIsMapView(false);
+  };
+
   return (
     <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px] bg-muted rounded-lg overflow-hidden">
+      {/* Back button */}
+      <div className="absolute top-4 left-4 z-30">
+        <Button 
+          variant="secondary" 
+          size="sm" 
+          className="flex items-center gap-1 bg-white/80 backdrop-blur-sm hover:bg-white/90"
+          onClick={handleBack}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to list</span>
+        </Button>
+      </div>
+
       {!isPseudoRendered ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
